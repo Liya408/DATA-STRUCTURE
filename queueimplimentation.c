@@ -6,6 +6,10 @@
 int queue[SIZE];
 int front = -1, rear = -1;
 
+void enqueue(int item);
+void dequeue();
+void displayQueue();
+
 // Queue Operations
 void enqueue(int item) {
     if (rear == SIZE - 1)
@@ -17,6 +21,7 @@ void enqueue(int item) {
         queue[rear] = item;
         printf("%d inserted.\n", item);
     }
+    displayQueue();
 }
 
 void dequeue() {
@@ -26,13 +31,14 @@ void dequeue() {
         printf("Deleted: %d\n", queue[front]);
         front++;
     }
+   displayQueue();
 }
 
 void displayQueue() {
     if (front == -1 || front > rear)
         printf("Queue is empty.\n");
     else {
-        printf("Queue: ");
+        printf("Current Queue: ");
         for (int i = front; i <= rear; i++)
             printf("%d ", queue[i]);
         printf("\n");
@@ -44,7 +50,7 @@ int choice,value;
 
     while (1) {
         printf("\n--- MENU ---\n");
-        printf("1. Enqueue\n2. Dequeue\n3. Display Queue\n");
+        printf("1. Enqueue\n2. Dequeue\n");
         printf("0. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -57,9 +63,6 @@ int choice,value;
                 break;
             case 2:
                 dequeue();
-                break;
-            case 3:
-                displayQueue();
                 break;
             case 0:
                 printf("Exiting...\n");
